@@ -1,0 +1,27 @@
+/ {
+	chosen {
+		zephyr,canbus = &fdcan1;
+	};
+
+	transceiver0: can-phy0 {
+		compatible = "microchip,mcp2562fd", "can-transceiver-gpio";
+		standby-gpios = <&gpioe 2 GPIO_ACTIVE_HIGH>;
+		max-bitrate = <5000000>;
+		#phy-cells = <0>;
+	};
+};
+
+&clk_psik {
+	clock-frequency = <DT_FREQ_M(80)>;
+	xsik-div = "2";
+	status = "okay";
+};
+
+&fdcan1 {
+	clocks = <&rcc STM32_CLOCK(APB1_2, 9)>,
+		 <&rcc STM32_SRC_PSIK FDCAN_SEL(2)>;
+	pinctrl-0 = <&fdcan1_rx_pb8 &fdcan1_tx_pb9>;
+	pinctrl-names = "default";
+	phys = <&transceiver0>;
+	status = "okay";
+};

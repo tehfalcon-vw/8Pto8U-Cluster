@@ -52,7 +52,7 @@ The firmware transmits this frame every 500 ms:
 0x551 03
 ```
 
-This allows A3 8P window and sunroof operation (and other comfort can operations) when the 8U Q3 cluster is
+This fixes A3 8P window and sunroof operation (and other comfort can operations) when the 8U Q3 cluster is
 installed.
 
 ## Serial Commands

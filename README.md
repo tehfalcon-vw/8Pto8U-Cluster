@@ -3,19 +3,24 @@
 Zephyr firmware for an STM32 Nucleo-C542RC that helps an Audi A3 8P work with
 an Audi 8U Q3 instrument cluster.
 
-The firmware does two jobs on 100 kbit/s comfort CAN:
+This firmware does two jobs on 100 kbit/s comfort CAN:
 
-- Translates A3 8P wiper stalk MFD controls into 8U Q3 cluster menu commands.
-- Transmits the A3 comfort status heartbeat needed for window and sunroof
+- Translates A3 8P wiper stalk MFD/DIS controls into 8U Q3 cluster MFD/DIS controls.
+- Transmits the A3 comfort can status heartbeat needed for window and sunroof
   operation with the 8U cluster installed.
 
 ## Hardware
 
 - STM32 Nucleo-C542RC
-- Onboard FDCAN transceiver on CN18
-- Classic CAN at 100000 bit/s
-- Vehicle CAN high/low connected to the Nucleo CAN transceiver
-- Ignition-switched fused vehicle power through a suitable buck converter
+- 5V Buck Converter
+
+## Installation
+
+Connect STM32 CanH/CANL at CANBUS Gateway (J533) on Comfort CAN. 
+
+Connect fused 12v Power to 5v Buck Converter to Terminal 15 (ign) power source, then 5v buck converter to the STM32.
+
+Stable Firmware to Flash to the STM32 is located on the releases page.
 
 ## CAN Behavior
 
@@ -47,7 +52,7 @@ The firmware transmits this frame every 500 ms:
 0x551 03
 ```
 
-This preserves A3 8P window and sunroof operation when the 8U Q3 cluster is
+This allows A3 8P window and sunroof operation (and other comfort can operations) when the 8U Q3 cluster is
 installed.
 
 ## Serial Commands

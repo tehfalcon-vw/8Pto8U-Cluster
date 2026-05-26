@@ -29,7 +29,7 @@ Each cluster command is followed by the required release frame:
 
 8P comfort compatibility:
 
-- `0x551 03` is transmitted every 500 ms. This restores window and sunroof
+- `0x551 03` is transmitted every 500 ms. This fixes window and sunroof
   operation with the Q3 cluster installed in the A3 8P.
 
 Press handling:
